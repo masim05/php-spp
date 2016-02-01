@@ -49,6 +49,27 @@ class DijkstraTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(false, $solution["success"]);
 
     }
+
+    public function testSolutionWhenSeveralVariantsArePossible()
+    {
+        $graph = new Graph();
+
+        $graph->addEdgeForce('Moscow', 'Kaluga', 10);
+        $graph->addEdgeForce('Kaluga', 'Ryazan', 16);
+        $graph->addEdgeForce('Moscow', 'Tula', 12);
+        $graph->addEdgeForce('Tula', 'Ryazan', 14);
+
+        $solver = new DijkstraSPPSolver($graph);
+
+        $solver->solve('Moscow', 'Ryazan');
+        $solution = $solver->getSolution();
+
+        //print_r($solution);
+
+        $this->assertEquals(true, $solution["success"]);
+        $this->assertEquals(26, $solution["cost"]);
+
+    }
 }
 
 ?>
