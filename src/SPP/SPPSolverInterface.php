@@ -12,6 +12,12 @@ interface SPPSolverInterface
      * @throws SPP\Exception
      */
     public function solve($from, $to);
+
+    /**
+     * @return mixed
+     */
+
+    public function getSolution();
 }
 
 ?>
