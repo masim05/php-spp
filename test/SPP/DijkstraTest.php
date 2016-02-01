@@ -22,12 +22,31 @@ class DijkstraTest extends PHPUnit_Framework_TestCase
 
         $solver = new DijkstraSPPSolver($graph);
 
-        $solution = $solver->solve('Kaluga', 'Vladimir');
+        $solver->solve('Kaluga', 'Vladimir');
+        $solution = $solver->getSolution();
 
         //print_r($solution);
 
         $this->assertEquals(true, $solution["success"]);
         $this->assertEquals(26, $solution["cost"]);
+
+    }
+
+    public function testSolutionInDisconnectedGraph()
+    {
+        $graph = new Graph();
+
+        $graph->addEdgeForce('Moscow', 'Kaluga', 10);
+        $graph->addEdgeForce('Ryazan', 'Vladimir', 16);
+
+        $solver = new DijkstraSPPSolver($graph);
+
+        $solver->solve('Kaluga', 'Vladimir');
+        $solution = $solver->getSolution();
+
+        //print_r($solution);
+
+        $this->assertEquals(false, $solution["success"]);
 
     }
 }
