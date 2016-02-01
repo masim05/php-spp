@@ -70,6 +70,16 @@ class Graph implements GraphInterface
         $this->addEdge($from, $to, $cost);
     }
 
+    /**
+     * @param String $vertex
+     * @throws \SPP\Exception
+     */
+    public function getConnections($vertex)
+    {
+        return $this->vertices[$vertex];
+    }
+
+
     /* Private methods */
 
     /*
