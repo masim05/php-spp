@@ -94,6 +94,7 @@ class DijkstraSPPSolver implements SPPSolverInterface
                 break;
             }
 
+            // TODO: collect all possible routes, do not fall to the first one.
             array_push($queue, $this->handled[$current]["predecessors"][0]);
         }
 
